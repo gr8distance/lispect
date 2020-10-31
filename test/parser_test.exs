@@ -5,11 +5,9 @@ defmodule Lispect.ParserTest do
   require IEx
 
   test "parse returns evaluatable S expressions" do
-    # simple_code = "(print \"hello\")"
-    # assert Parser.parse(simple_code) == [:print, "hello"]
-
-    complicated_code = "(print (+ 1 (- (/ 10 1) (* 2 10))))"
-    assert Parser.parse(complicated_code) == [:print, [:+, 1, [:-, [:/, 10, 1], [:*, 2, 10]]]]
+    assert Parser.parse("(print \"hello\")") == [:print, "hello"]
+    assert Parser.parse("(echo (+ 1 (- 2 (* 3 (/ 4 1)))))") == [:echo, [:+, 1, [:-, 2, [:*, 3, [:/, 4, 1]]]]]
+    assert Parser.parse("(print (+ 1 (- (/ 10 1) (* 2 10))))") == [:print, [:+, 1, [:-, [:/, 10, 1], [:*, 2, 10]]]]
   end
 
   # test "read_from will parse tokens" do
