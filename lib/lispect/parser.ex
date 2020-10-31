@@ -57,7 +57,7 @@ defmodule Lispect.Parser do
     end
   end
 
-  def to_atom(token) do
+  defp to_atom(token) do
     String.match?(token, ~r/^\'.*\'$/)
   end
 
