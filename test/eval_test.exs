@@ -22,5 +22,9 @@ defmodule Lispect.EvalrTest do
     assert "(/ 18 9)"
     |> Parser.parse
     |> Eval.evaluate == 2
+
+    assert "(mod 3 2)"
+    |> Parser.parse
+    |> Eval.evaluate == 1
   end
 end

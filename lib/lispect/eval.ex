@@ -10,7 +10,8 @@ defmodule Lispect.Eval do
       +:  fn args -> Enum.sum(args) end,
       -: fn [h|t] -> Enum.reduce(t, h, fn x, acm -> acm - x end) end,
       *: fn [h|t] -> Enum.reduce(t, h, fn x, acm -> acm * x end) end,
-      /: fn [h|t] -> Enum.reduce(t, h, fn x, acm -> acm / x end) end
+      /: fn [h|t] -> Enum.reduce(t, h, fn x, acm -> acm / x end) end,
+      mod: fn [h|t] -> Enum.reduce(t, h, fn x, acm -> rem(acm, x) end) end
     }
   end
 end
