@@ -6,7 +6,19 @@ defmodule Lispect.EvalrTest do
 
   require IEx
 
-  test ".evaluateに実装された基本的な四則演算" do
+  test "carは[h|_]のhを返す" do
+    assert "(car (1 2 3 4))"
+    |> Parser.parse
+    |> Eval.evaluate == 1
+  end
+
+  test "cdrは[_|t]のtを返す" do
+    assert "(cdr (1 2 3 4))"
+    |> Parser.parse
+    |> Eval.evaluate == [2, 3, 4]
+  end
+
+  test "基本的な四則演算" do
     assert "(+ 1 2)"
     |> Parser.parse
     |> Eval.evaluate == 3
