@@ -22,7 +22,7 @@ defmodule Lispect.Parser do
   def read_from([:")"|[:"("|tokens]], acm), do: [acm] ++ [read_from(tokens)]
   def read_from([:"("|tokens], acm) do
     s_expr = read_from(tokens)
-    if is_list_in_list?(s_expr) do
+    if list_in_list?(s_expr) do
       acm ++ s_expr
     else
       acm ++ [s_expr]
@@ -69,6 +69,6 @@ defmodule Lispect.Parser do
     end
   end
 
-  defp is_list_in_list?([h|_]) when is_list(h), do: true
-  defp is_list_in_list?(_), do: false
+  defp list_in_list?([h|_]) when is_list(h), do: true
+  defp list_in_list?(_), do: false
 end
