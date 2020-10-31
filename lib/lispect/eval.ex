@@ -14,6 +14,9 @@ defmodule Lispect.Eval do
       mod: fn [h|t] -> Enum.reduce(t, h, fn x, acm -> rem(acm, x) end) end,
       car: fn [[h|_]] -> h end,
       cdr: fn [[_|t]] -> t end,
+      atom: fn [val] -> is_atom(val) end,
+      eq: fn [a, b] -> a == b end,
+      cons: fn [a, b] -> [a|b] end,
     }
   end
 end

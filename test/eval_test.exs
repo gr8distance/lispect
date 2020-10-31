@@ -18,6 +18,28 @@ defmodule Lispect.EvalrTest do
     |> Eval.evaluate == [2, 3, 4]
   end
 
+  test "atomは値がatomか返す" do
+    assert "(atom 'hoge)"
+    |> Parser.parse
+    |> Eval.evaluate == true
+  end
+
+  test "eqは両辺が等しいか返す" do
+    assert "(eq 1 1)"
+    |> Parser.parse
+    |> Eval.evaluate == true
+
+    assert "(eq 1 2)"
+    |> Parser.parse
+    |> Eval.evaluate == false
+  end
+
+  test "consは引数のリストを連結する" do
+    assert "(cons 1 2)"
+    |> Parser.parse
+    |> Eval.evaluate == [1|2]
+  end
+
   test "基本的な四則演算" do
     assert "(+ 1 2)"
     |> Parser.parse
