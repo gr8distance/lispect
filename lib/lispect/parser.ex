@@ -50,8 +50,10 @@ defmodule Lispect.Parser do
         to_number(token)
       String.match?(token, ~r/\".*\"/) ->
         String.replace(token, "\"", "")
-      String.match?(token, ~r/^\'.*\'$/) ->
-        String.replace(token, "'", "")
+      String.match?(token, ~r/^:.*\'$/) ->
+        token
+        |> String.replace("'", "")
+        |> String.to_atom
       true ->
         String.replace(token, "'", "") |> String.to_atom
     end
